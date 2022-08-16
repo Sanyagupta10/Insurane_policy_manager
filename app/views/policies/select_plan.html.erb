@@ -1,0 +1,27 @@
+<% @c_id %>
+<% @plans=Policytype.where(:company_id => @c_id) %>
+<% if @plans.count!=0 %>
+  <div class="container">
+    <h1> Step 2 :   Select a policy </h1>
+    <div class="rows">
+      <% @plans.each do |i| %> 
+      <%= link_to new_policy_path(:company_id => @c_id,:policytype_id => i.id) do %>
+      <div class="col-md-5 policy-type-box" >
+        <h2><%=i.name%></h2>
+        <br><strong>Description:</strong> <%=i.description%> <br>
+        <br><strong>Duration:</strong> <%=i.duration%> <br>
+        <br><strong>Insured Amount:</strong> <%=i.sum_insured%> INR <br>
+        <br><strong>Premium Amount:</strong> <%=i.premium_amt%> INR<br>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <% @c= Company.find(@c_id) %>
+  <div class="container">
+    <h1> No plans for the chosen company : <%= @c.name %> <br> Choose a different company</h1>
+    
+    <%= link_to "Go back", policies_select_company_path,:class => "btn btn-primary custom_btn_small" %>
+  </div>
+<% end %>

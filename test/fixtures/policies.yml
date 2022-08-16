@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  policy_type: MyString
+  description: MyString
+  sum_insured: 9.99
+  premium_amt: 9.99
+  commission: 9.99
+  purchase_date: 2022-08-08
+  mature_date: 2022-08-08
+  user: one
+  policytype: one
+  company: one
+
+two:
+  policy_type: MyString
+  description: MyString
+  sum_insured: 9.99
+  premium_amt: 9.99
+  commission: 9.99
+  purchase_date: 2022-08-08
+  mature_date: 2022-08-08
+  user: two
+  policytype: two
+  company: two

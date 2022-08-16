@@ -1,0 +1,19 @@
+<% if(@allcompany.count!=0) %>
+  <div class="container">
+    <h1> Step 1 :   Select a Company </h1>
+    <div class="rows">
+      <% @allcompany.each do |i| %>
+      <%= link_to policies_select_plan_path(:company_id => i.id) do %>
+      <div class="col-md-5 company-type-box" >
+        <h2> <%=i.name%> </h2>
+        <br> Description: <%=i.description%> <br>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <h1> No companies to display. Please come back later. </h1>  
+  </div>
+<% end %>

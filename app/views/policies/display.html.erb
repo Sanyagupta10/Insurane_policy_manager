@@ -1,0 +1,25 @@
+<div class="container">
+  <%= link_to "Back", policies_path,:class => "btn btn-primary custom_btn_small" %>
+</div> <br>
+<% @user = current_user %>
+<% @usr=User.find(@policy.user_id) %>
+<% @com = Company.find(@policy.company_id) %>
+<% @plan = Policytype.find(@policy.policytype_id) %>
+<div class="container show-box">
+  <p><strong> Holder's Name :</strong><%= @usr.name %></p><br>
+  <p><strong> Company Name :</strong><%= @com.name %></p><br>
+  <p><strong> policy Type :</strong><%= @policy.policy_type %></p><br>
+  <p><strong> Description :</strong><%= @policy.description %></p><br>
+  <p><strong> Sum insured :</strong><%= @policy.sum_insured %></p><br>
+  <p><strong> Premium amount :</strong><%= @policy.premium_amt %></p><br>
+  <p><strong> Commission :</strong><%= @policy.commission %></p><br>
+  <p><strong> Purchase date :</strong><%= @policy.purchase_date %></p><br>
+  <p><strong> Mature date :</strong><%= @policy.mature_date %></p><br>
+ 
+  <% if @user.admin? %>
+    <td><%= link_to "Edit", edit_policy_path(@policy), :class => "btn btn-primary custom_btn_small" %></td>
+    <td><%= link_to 'Destroy', policy_path(@policy),
+    method: :delete,
+    data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small" %></td>
+  <% end %>
+</div>

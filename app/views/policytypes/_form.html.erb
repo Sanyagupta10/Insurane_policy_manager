@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <% @duration=[5,10,15,20,25,30,35,40,45,50] %>
+        <%= form_with(model: @policytype, local: true) do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.label :description %>
+            <%= f.text_area :description, :cols => "10", :rows => "5", class: 'form-control' %>  
+            <%= f.label :company_id %>
+            <%= f.select :company_id, @allcompany.map{|i| [i.name,i.id]}, {}, class: 'form-control' %>
+            <%= f.label :duration %>
+            <%= f.select :duration, @duration, {}, class: 'form-control' %>
+            <%= f.label :sum_insured %>
+            <%= f.text_field :sum_insured, placeholder: 'in INR', class: 'form-control' %>
+            <%= f.label :premium_amt %>
+            <%= f.text_field :premium_amt, placeholder: 'in INR', class: 'form-control' %>
+            <%= f.submit "Submit", class: "btn btn-primary custom_btn_small" %>
+        <% end %>
+    </div>
+</div>
+
+

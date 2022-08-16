@@ -1,0 +1,42 @@
+<% @usr = User.find(@policy.user_id) %>
+<div class="container" style="max-width: 50%; align-self: center;">
+  <h2> Edit Policy </h2>
+  <h3> Holder: <%= @usr.name %> </h3>
+  <%= form_with(model: @policy, local: true) do |f| %>
+    <% if @policy.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-danger">
+          <%= pluralize(@policy.errors.count, "error") %> prohibited
+          this policy from being saved:
+          <ul>
+            <% @policy.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    
+    <%= f.hidden_field :user_id, :value => @policy.user_id , :class => "form-control", :readonly => true %>
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description, :cols => "10", :rows => "5", :class => "form-control" %>
+    <%= f.label :sum_insured, "Sum Insured" %>
+    <%= f.text_field :sum_insured, :value => @policy.sum_insured, :class => "form-control", :readonly => true %>
+    <%= f.label :premium_amt, "Premium Amount" %>
+    <%= f.text_field :premium_amt, :value => @policy.premium_amt, :class => "form-control", :readonly => true %>
+    <%= f.label :commission, "Commission" %>
+    <%= f.text_field :commission,:value => @policy.commission, :class => "form-control", :readonly => true %>
+    <%= f.label :purchase_date, "Purchase Date" %>
+    <%= f.text_field :purchase_date, :value => @policy.purchase_date , :class => "form-control", :readonly => true %>
+    <%= f.label :mature_date, "Mature Date" %>
+    <%= f.text_field :mature_date, :value => @policy.mature_date , :class => "form-control" %>
+    <%= f.hidden_field :company_id, :value => @policy.company_id, :class => "form-control", :readonly => true %>
+    <%= f.hidden_field :policytype_id, :value => @policy.policytype_id, :class => "form-control", :readonly => true %>
+    <%= f.label :policy_type, "Policy Type" %>
+    <%= f.text_field :policy_type, :value => @policy.policy_type, :class => "form-control", :readonly => true %>
+
+    <%= f.submit "Create Policy", :class => "btn btn-primary custom_btn_small" %>
+  <% end %>
+</div>
+

@@ -1,0 +1,23 @@
+<div class="container">
+  <%= link_to "Back", companies_path,:class => "btn btn-primary custom_btn_small" %>
+</div>
+<% @plan=Policytype.where(:company_id => @company.id) %>
+<% if @plan.count!=0 %>
+  <div class="container">
+    <h1 >All the plans of the company: <%= @company.name %> </h1>
+    <% @plan.each do |i| %>
+      <div class="container show-box">
+        <h2><%=i.name%></h2>
+        <p><strong>Description:</strong> <%=i.description%> </p><br>
+        <p><strong>Duration:</strong> <%=i.duration%> years <br></p>
+        <p><strong>Insured Amount:</strong> <%=i.sum_insured%> INR <br></p>
+        <p><strong>Premium Amount:</strong> <%=i.premium_amt%> INR<br></p>
+        <td> <%= link_to "Buy", new_policy_path(:company_id => i.company_id,:policytype_id => i.id),:class => "btn btn-primary custom_btn_small" %><td>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="container">
+    <h1 class="form-info">There are no plans of the company: <%= @company.name %> </h1>
+  </div>
+<% end %>

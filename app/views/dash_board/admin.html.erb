@@ -1,0 +1,6 @@
+<% @user = current_user %>
+<h3> Welcome <%= @user.name  %> </h3>
+<h4>There are <%= pluralize(Policy.all.count, "policy") %> <br> You can view and add policies from <strong>Policies</strong> tab </h4><br>
+<h4>There are <%= pluralize(Company.all.count,"company") %> <br> You can view/add/edit/remove them from the <strong>Companies</strong> tab </h4>
+<h4>There are <%= pluralize(Policytype.all.count,"plan") %> <br> You can view/add/edit/remove them from the <strong>Plans</strong> tab </h4>
+<h4>There are <%= pluralize(User.all.count,"User") %> <br> You can view/add/edit/remove them from the <strong>Users</strong> tab </h4>

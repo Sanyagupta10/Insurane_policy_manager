@@ -1,0 +1,39 @@
+<% @user = current_user %>
+<% if(@companies.count!=0) %>
+  <div class="container" >
+    <h1 class="form-info">Companies</h1>
+    <p class="text-style">This list displays all the available companies. 
+      This list is only for viewing, to select a company and buy a policy from a specific company , 
+    please visit <strong>Policy --> Add new policy</strong> </p><br><br>            
+    <table class="table table-hover table-responsive">
+      <thead class="thead-inverse">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @companies.each do |i| %>
+        <tr>
+          <td><%=i.name%></td>
+          <td><%=i.description %></td>
+          <td><%= link_to "Plans", companies_companyShow_path(:id => i.id), :class => "btn btn-primary custom_btn_small" %></td>
+          <% if @user.admin? %>
+            <td><%= link_to "Edit", edit_company_path(i), :class => "btn btn-primary custom_btn_small" %></td>
+            <td><%= link_to 'Destroy', company_path(i),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small"%></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+   <div class="container" >
+    <h2>No companies available</h2>
+    <p class="text-style">Please come back later</p><br><br>            
+  </div>
+<% end %>

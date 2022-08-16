@@ -1,41 +1,81 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <%= link_to "insurance manager", root_path, id: "logo" %>
-        <nav>
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1"
-                        aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
-                id="bs-example-navbar-collapse-1">
-                <% if logged_in? %>
-                    <li><%= link_to "Details", edit_user_path(current_user) %></li>
-                    <li><%= link_to "Users", users_path %></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Account <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to "Profile", current_user %></li>
-                            <li><%= link_to "Home", root_path %></li>
-                            <li class="divider"></li>
-                            <li>
-                                <%= link_to "Log out", logout_path, method: :delete %>
-                            </li>
-                        </ul>
-                    </li>
-                <% else %>
-                    <li><%= link_to "Home", root_path %></li>
-                    <li><%= link_to "Log in", login_path %></li>
-                <% end %>
+  <div class="container">
+    <%= link_to "insurance manager", root_path, id: "logo" %>
+    <nav>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
+        id="bs-example-navbar-collapse-1">
+        <% if logged_in? %>
+          <% if current_user.admin? %>
+            <li><%= link_to "Dashboard", dash_board_admin_path %></li>
+            <li><%= link_to "Users", users_path %></li>
+          <% else %>
+            <li><%= link_to "Dashboard", dash_board_customer_path %></li>
+          <% end %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Policies <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Add New Policy", new_policy_path %></li> 
+              <% if current_user.admin? %>
+                <li><%= link_to "View All Policies", policies_path %></li>
+              <% else %>
+                <li><%= link_to "View My Policies", policies_path %></li>
+              <% end %>
             </ul>
-        </nav>
-    </div>
+          </li>
+        
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Companies <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "View all Companies", companies_path %></li>                          
+              <% if current_user.admin? %>
+                <li><%= link_to "Add New Company", new_company_path %></li>
+              <% end %>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Plans <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "View all Plans", policytypes_path %></li>                          
+              <% if current_user.admin? %>
+                <li><%= link_to "Add New Plan", new_policytype_path %></li>
+              <% end %>
+            </ul>
+          </li>
+            
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Details", edit_user_path(current_user) %></li>                          
+              <li><%= link_to "Home", root_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Log out", logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Log in", login_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </header>
