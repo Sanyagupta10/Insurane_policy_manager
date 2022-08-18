@@ -1,7 +1,7 @@
 <% @user = current_user %>
 <% if(@companies.count!=0) %>
   <div class="container" >
-    <h1 class="form-info">Companies</h1>
+    <h1>Companies</h1>
     <p class="text-style">This list displays all the available companies. 
       This list is only for viewing, to select a company and buy a policy from a specific company , 
     please visit <strong>Policy --> Add new policy</strong> </p><br><br>            
@@ -32,7 +32,7 @@
     </table>
   </div>
 <% else %>
-   <div class="container" >
+  <div class="container" >
     <h2>No companies available</h2>
     <p class="text-style">Please come back later</p><br><br>            
   </div>

@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
-  get 'policies/index'
-  get 'policytypes/new'
-  get 'policytypes/index'
-  get 'dash_board/index'
   get 'dash_board/admin'
   get 'dash_board/customer'
   get 'policies/select_company'
   get 'policies/select_plan'
   get 'policies/display'
-  get 'companies/index'
+  get 'policies/policy_email'
   get 'companies/companyShow'
   get 'sessions/new'
   get 'users/new'
@@ -22,4 +18,5 @@ Rails.application.routes.draw do
   resources :companies
   resources :policytypes
   resources :policies
+  resources :comments
 end

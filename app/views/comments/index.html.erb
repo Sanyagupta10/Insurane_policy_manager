@@ -1,0 +1,27 @@
+<% @user = current_user %>
+<div class="container">
+  <%= link_to "Back", policies_path,:class => "btn btn-primary custom_btn_small" %>
+  <%= link_to "New comment", new_comment_path(:id => @p_id),:class => "btn btn-primary custom_btn_small" %>
+</div>
+
+<div class="container" >
+ <% if @comments.nil? %>
+   <br> <p>No comments to display</p>
+ <% else %>
+    <h2>Comments</h2>
+    <% @comments.each do |i| %>
+      <div class="container post-box">
+        <h3><%=i.body %></h3>
+        <%= @u = i.user.name %>
+        <p> : <%= @u %></p>
+
+        <% if @user.name === @u || @user.admin? %>
+          <%= link_to 'Delete', comment_path(:id => i.id, :pid => @p_id),
+          method: :delete,
+          data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small"%>
+        <% end %>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>

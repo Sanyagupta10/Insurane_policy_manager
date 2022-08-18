@@ -113,3 +113,23 @@ height: auto !important;
     align-self: center;
     text-align: center;
 }
+
+.post-box{
+    padding: 2%;
+   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    background-color: rgba(238, 238, 238,0.3);
+    font-family: 'Comfortaa', cursive;
+    max-width: 55%;
+    align-self:centre;
+          border-radius: 20px;
+   margin-bottom: 5%;
+
+}
+.post-box:hover{
+
+   background-color: rgba(238, 238, 238,0.8);
+}
+.new_btn{
+   text-align:centre;
+   margin-bottom:5%;
+}

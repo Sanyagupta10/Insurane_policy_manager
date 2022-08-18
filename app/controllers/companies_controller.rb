@@ -34,6 +34,7 @@ class CompaniesController < ApplicationController
   			render 'new'
   	end
 	end
+  
   def edit
     if logged_in?
       @company = Company.find(params[:id])

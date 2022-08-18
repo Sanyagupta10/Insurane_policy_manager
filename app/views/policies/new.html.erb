@@ -46,7 +46,6 @@
     <%= f.hidden_field :company_id, :value => @c_id, :class => "form-control", :readonly => true %>
     <%= f.hidden_field :policytype_id, :value => @p_id, :class => "form-control", :readonly => true %>
 
-
     <%= f.submit "Create Policy", :class => "btn btn-primary custom_btn_small" %>
   <% end %>
 </div>
@@ -55,30 +54,27 @@
   $( document ).ready(function() {
     v = $('#pol_ins_amt').text();
     dur = $('#pol_duration').text();
-      if(dur!=0)
-      var total = parseInt(v/dur);
-      var com = parseInt(0.2 * total);
-      $("#prem_amt").val(total);
-      $("#com").val(com)
+    if(dur!=0)
+    var total = parseInt(v/dur);
+    var com = parseInt(0.2 * total);
+    $("#prem_amt").val(total);
+    $("#com").val(com)
 
   });
   $("#sum_ins").change(function(){
-      dur = $('#pol_duration').text();
-
-      var price = Number($(this).val());
-      if(dur!=0)
-      var total = parseInt((price)/dur);
-      var com = parseInt(0.2 * total);
-      $("#prem_amt").val(total);
-      $("#com").val(com)
+    dur = $('#pol_duration').text();
+    var price = Number($(this).val());
+    if(dur!=0)
+    var total = parseInt((price)/dur);
+    var com = parseInt(0.2 * total);
+    $("#prem_amt").val(total);
+    $("#com").val(com)
   });
-
-
 
   function updatePrice(val)
   {
-      $("#sum_ins").val(val);
-      $("#sum_ins").trigger('change');
+    $("#sum_ins").val(val);
+    $("#sum_ins").trigger('change');
   }
 
 </script>

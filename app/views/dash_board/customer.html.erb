@@ -1,5 +1,7 @@
 <% @user = current_user %>
-<h3> Welcome <%= @user.name  %> </h3>
+<div class="center jumbotron">
+  <h1> Welcome <%= @user.name  %> </h1> <br>
+</div>
 <h4>There are <%= pluralize(Policy.all.count, "policy") %> <br> You can view and add policies from <strong>Policies</strong> tab </h4><br>
-<h4>There are <%= pluralize(Company.all.count,"company") %> to choose from <br> You can view them from the <strong>Companies</strong> tab </h4>
-  <h4>There are <%= pluralize(Policytype.all.count,"plan") %> to choose from <br> You can view them from the <strong>Plans</strong> tab </h4>
+<h4>There are <%= pluralize(Company.all.count,"company") %> to choose from <br> You can view them from the <strong>Companies</strong> tab </h4> <br>
+<h4>There are <%= pluralize(Policytype.all.count,"plan") %> to choose from <br> You can view them from the <strong>Plans</strong> tab </h4>

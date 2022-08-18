@@ -1,4 +1,6 @@
-<h1> <%= @user.name %> </h1>
-<h1> <%= @user.email %> </h1>
-<h1> <%= @user.contact_number %> </h1>
-<h1> <%= @user.address %> </h1>
+<h3> <%= @user.name %> </h3>
+<h3> <%= @user.email %> </h3>
+<h3> <%= @user.contact_number %> </h3>
+<h3> <%= @user.address %> </h3>
+<% @pol=Policy.where(:user_id => @user.id) %>
+<h3> <%= @user.name %> has <%= pluralize(@pol.count, "policy") %> </h3>

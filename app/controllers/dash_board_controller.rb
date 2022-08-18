@@ -6,7 +6,10 @@ class DashBoardController < ApplicationController
   end
 
   def admin
-    redirect_to(root_url) unless current_user.admin?
+    if !current_user.admin?
+      redirect_to dash_board_customer_path 
+      flash[:danger] = "You are not an admin"
+    end
   end
 
   def customer

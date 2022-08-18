@@ -9,15 +9,15 @@
     <h2>Policies</h2>
     <p class="text-style">This list displays all the available policies bought by user. 
     This list is only for viewing, to buy a policy from a specific company, 
-    please visit <strong>Policy --> Add new policy</strong> </p> <br><br>                 
+    Please visit <strong>Policy --> Add new policy</strong> </p> <br><br>                 
     <table class="table table-responsive table-hover">
       <thead>
         <tr>
-          <th>Holders name</th>
-          <th>Company name</th>
-          <th>Policy type</th>
-          <th>Sum insured</th>
-          <th>Premium amount</th>
+          <th>Holders Name</th>
+          <th>Company Name</th>
+          <th>Policy Type</th>
+          <th>Sum Insured</th>
+          <th>Premium Amount</th>
           <th>Commission</th>
           <th></th>
           <th></th>
@@ -37,18 +37,17 @@
             <td><%= i.sum_insured %></td>
             <td><%= i.premium_amt %></td>
             <td><%= i.commission %></td>
-            <td><%= link_to "Display", policies_display_path(:id => i.id),:class => "btn btn-primary custom_btn_small" %></td>
-           
+            <td><%= link_to "Display", policies_display_path(:id => i.id),:class => "btn btn-primary" %></td>
+            <td><%= link_to "comments", comments_path(:id => i.id),:class => "btn btn-primary" %></td> 
           </tr>
-
         <% end %>
       </tbody>
     </table>
   </div>
 <% else %>
   <div class="container" >
-      <h3 class="form-info"> Policies </h3>
-      <p class="text-style"> No policies to display, 
-      please visit <strong>Policy --> Add new policy</strong></p><br><br>                 
-    </div>
+    <h3> Policies </h3>
+    <p> No policies to display, 
+    Please visit <strong>Policy --> Add new policy</strong></p><br><br>                 
+  </div>
 <% end %>

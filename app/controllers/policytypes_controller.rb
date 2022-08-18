@@ -1,11 +1,11 @@
 class PolicytypesController < ApplicationController
   def index
     if logged_in?
-	  @policytypes= Policytype.all.reorder("Company_id")
-	  @allcompany= Company.all
-	else
-	  redirect_to login_path
-	end
+      @policytypes= Policytype.all.reorder("Company_id")
+      @allcompany= Company.all
+    else
+      redirect_to login_path
+    end
   end
 
   def show
@@ -13,19 +13,19 @@ class PolicytypesController < ApplicationController
 
   def new
     if logged_in?
-	  @policytype = Policytype.new
-	  @allcompany = Company.all
-	else
-	  redirect_to login_path
-	end
+      @policytype = Policytype.new
+      @allcompany = Company.all
+    else
+      redirect_to login_path
+    end
   end
 
   def create
     @policytype= Policytype.new(policytype_params)
-	if @policytype.save
-  	  redirect_to policytypes_path
-  	else
-	  render 'new'
+    if @policytype.save
+      redirect_to policytypes_path
+    else
+      render 'new'
   	end
   end
 
@@ -36,7 +36,6 @@ class PolicytypesController < ApplicationController
       @allcompany = Company.all
     else
       redirect_to login_path
-
     end
   end
   def update
@@ -47,10 +46,10 @@ class PolicytypesController < ApplicationController
       render 'edit'
     end
   end
+
   def destroy
     @policytype = Policytype.find(params[:id])
     @policytype.destroy
- 
     redirect_to policytypes_path, :notice => "plan deleted"
   end
 

@@ -19,21 +19,21 @@
       </thead>
       <tbody>
         <% @policytypes.each do |i| %>
-            <tr>
-              <% @company= Company.find(i.company_id) %>
-              <td><%= @company.name%></td>
-              <td><%=i.name%></td>
-              <td><%=i.description%></td>
-              <td><%=i.duration%></td>
-              <td><%=i.sum_insured%></td>
-              <td><%=i.premium_amt%></td>
-              <td> <%= link_to "Buy", new_policy_path(:company_id => i.company_id,:policytype_id => i.id),:class => "btn btn-primary custom_btn_small" %><td>
-              <% if @user.admin? %>
-                <td><%= link_to "Edit", edit_policytype_path(i), :class => "btn btn-primary custom_btn_small" %></td>
-                <td><%= link_to 'Destroy', policytype_path(i),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small"%></td>
-              <% end %>
+          <tr>
+            <% @company= Company.find(i.company_id) %>
+            <td><%= @company.name%></td>
+            <td><%=i.name%></td>
+            <td><%=i.description%></td>
+            <td><%=i.duration%></td>
+            <td><%=i.sum_insured%></td>
+            <td><%=i.premium_amt%></td>
+            <td> <%= link_to "Buy", new_policy_path(:company_id => i.company_id,:policytype_id => i.id),:class => "btn btn-primary custom_btn_small" %><td>
+            <% if @user.admin? %>
+              <td><%= link_to "Edit", edit_policytype_path(i), :class => "btn btn-primary custom_btn_small" %></td>
+              <td><%= link_to 'Destroy', policytype_path(i),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small"%></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

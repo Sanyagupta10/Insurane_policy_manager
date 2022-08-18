@@ -1,5 +1,6 @@
 <div class="container">
   <%= link_to "Back", policies_path,:class => "btn btn-primary custom_btn_small" %>
+  <td><%= link_to "Mail", policies_policy_email_path , :class => "btn btn-primary custom_btn_small" %></td>
 </div> <br>
 <% @user = current_user %>
 <% @usr=User.find(@policy.user_id) %>
@@ -18,7 +19,8 @@
  
   <% if @user.admin? %>
     <td><%= link_to "Edit", edit_policy_path(@policy), :class => "btn btn-primary custom_btn_small" %></td>
-    <td><%= link_to 'Destroy', policy_path(@policy),
+    
+    <td><%= link_to 'Delete', policy_path(@policy),
     method: :delete,
     data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small" %></td>
   <% end %>
