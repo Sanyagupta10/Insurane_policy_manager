@@ -1,6 +1,5 @@
 class User < ApplicationRecord
 	before_save { self.email = email.downcase }
-	has_many :posts, dependent: :destroy
 	has_many :policy, dependent: :destroy
 	has_many :comments, dependent: :destroy
 	validates :name, presence: true, length: { maximum: 50 }

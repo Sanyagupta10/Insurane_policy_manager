@@ -46,6 +46,10 @@
     <%= f.hidden_field :company_id, :value => @c_id, :class => "form-control", :readonly => true %>
     <%= f.hidden_field :policytype_id, :value => @p_id, :class => "form-control", :readonly => true %>
 
+
+    <%= f.label :documents, "Documents" %>
+    <%= f.file_field :documents, multiple: true, :class => "form-control" %>
+
     <%= f.submit "Create Policy", :class => "btn btn-primary custom_btn_small" %>
   <% end %>
 </div>

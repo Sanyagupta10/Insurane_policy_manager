@@ -1,6 +1,6 @@
 <div class="container">
   <%= link_to "Back", policies_path,:class => "btn btn-primary custom_btn_small" %>
-  <td><%= link_to "Mail", policies_policy_email_path , :class => "btn btn-primary custom_btn_small" %></td>
+  <%= link_to "Mail", policies_policy_email_path , :class => "btn btn-primary custom_btn_small" %>
 </div> <br>
 <% @user = current_user %>
 <% @usr=User.find(@policy.user_id) %>
@@ -15,13 +15,24 @@
   <p><strong> Premium amount :</strong><%= @policy.premium_amt %></p><br>
   <p><strong> Commission :</strong><%= @policy.commission %></p><br>
   <p><strong> Purchase date :</strong><%= @policy.purchase_date %></p><br>
-  <p><strong> Mature date :</strong><%= @policy.mature_date %></p><br>
+  <p><strong> Mature date :</strong><%= @policy.mature_date %></p><br><br>
+  
+  <% if @policy.documents.attached? %>
+    <p><strong> Documents :</strong></p>
+    <% @policy.documents.each do |doc| %>
+      <%= link_to doc.filename, rails_blob_path(doc), :class => "btn btn-primary custom_btn_small" %>
+    <% end %>
+  <% else %>
+    <p><strong> Documents :</strong> No documents attached</p>
+  <% end %>
+  <br><br>
  
   <% if @user.admin? %>
-    <td><%= link_to "Edit", edit_policy_path(@policy), :class => "btn btn-primary custom_btn_small" %></td>
-    
-    <td><%= link_to 'Delete', policy_path(@policy),
+    <%= link_to "Edit", edit_policy_path(@policy), :class => "btn btn-primary custom_btn_small" %> 
+    <%= link_to 'Delete', policy_path(@policy),
     method: :delete,
-    data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small" %></td>
+    data: { confirm: 'Are you sure?' } , :class => "btn btn-primary custom_btn_small" %>
+  <% else %>
+    <%= link_to "Upload Documents", edit_policy_path(@policy) ,:class => "btn btn-primary custom_btn_small" %>
   <% end %>
 </div>

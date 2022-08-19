@@ -2,8 +2,8 @@
 <% if (@policytypes.count!=0) %>
 
   <div class="container" >
-    <h2 class="form-info">Plans</h2>
-    <p class="text-style">All the available plans of listed companies</p>            
+    <h2> Plans </h2>
+    <p class="text-style"> All the available plans of listed companies </p>            
     <table class="table table-hover table-responsive">
       <thead class="thead-inverse">
         <tr>
@@ -11,7 +11,7 @@
           <th>Policy Type</th>
           <th>Description</th>
           <th>Duration</th>
-          <th>Insured Amount</th>
+          <th>Insurance Amount</th>
           <th>Premium Amount</th>
           <th></th>
           <th></th>
@@ -21,12 +21,12 @@
         <% @policytypes.each do |i| %>
           <tr>
             <% @company= Company.find(i.company_id) %>
-            <td><%= @company.name%></td>
-            <td><%=i.name%></td>
-            <td><%=i.description%></td>
-            <td><%=i.duration%></td>
-            <td><%=i.sum_insured%></td>
-            <td><%=i.premium_amt%></td>
+            <td><%= @company.name %></td>
+            <td><%= i.name %></td>
+            <td><%= i.description %></td>
+            <td><%= i.duration %></td>
+            <td><%= i.sum_insured %></td>
+            <td><%= i.premium_amt %></td>
             <td> <%= link_to "Buy", new_policy_path(:company_id => i.company_id,:policytype_id => i.id),:class => "btn btn-primary custom_btn_small" %><td>
             <% if @user.admin? %>
               <td><%= link_to "Edit", edit_policytype_path(i), :class => "btn btn-primary custom_btn_small" %></td>
@@ -42,6 +42,6 @@
 <% else %>
   <div class="container" >
     <h2> No Plans Available. </h2>
-    <p class="text-style">Please come back later.</p><br><br>            
+    <p> Please come back later. </p><br><br>            
   </div>
 <% end %>

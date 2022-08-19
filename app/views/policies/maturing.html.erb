@@ -1,0 +1,54 @@
+<% @policies= Policy.all %>
+<% @mat_pol = Policy.where('mature_date <= ?', Date.current + 15.day) %>
+<% if(@mat_pol.count == 0) %>
+	<div class="container" >
+	
+	<p> No policies are about to expire recently</p><br><br>                 
+	</div>
+<% else %>
+
+	<div class="container" >
+		<h2>Policies</h2>
+		<p class="text-style">This list displays all the available policies that are going to expire 
+		within next 15 days. </p> <br><br> 
+									
+		<table class="table table-responsive table-hover">
+			<thead>
+				<tr>
+					<th>Holders Name</th>
+					<th>Company Name</th>
+					<th>Policy Type</th>
+					<th>Sum Insured</th>
+					<th>Premium Amount</th>
+					<th>Commission</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @mat_pol.each do |i| %>
+					<% @p_usr=User.find(i.user_id) %>
+					<% @company=Company.find(i.company_id) %>
+					<% @policytype=Policytype.find(i.policytype_id) %>
+					<tr>
+						<% @pol_id = i.id%>
+						<% @u_id = current_user.id %>
+						<td><%= @p_usr.name %></td>
+						<td><%= @company.name %></td>
+						<td><%= i.policy_type %></td>
+						<td><%= i.sum_insured %></td>
+						<td><%= i.premium_amt %></td>
+						<td><%= i.commission %></td>
+						<td><%= link_to "Policy Details", policies_display_path(:id => i.id),:class => "btn btn-primary" %></td>
+						<td><%= link_to "comments", comments_path(:id => i.id),:class => "btn btn-primary" %></td> 
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>
+
+
+
+
+            

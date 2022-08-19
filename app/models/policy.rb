@@ -3,6 +3,8 @@ class Policy < ApplicationRecord
   belongs_to :policytype
   belongs_to :company
 
+ has_many_attached :documents
+
   has_many :comments, dependent: :destroy
 
   validates :policy_type, presence: true

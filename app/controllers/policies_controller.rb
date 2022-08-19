@@ -19,6 +19,17 @@ class PoliciesController < ApplicationController
     end
   end
 
+  def maturing
+    if logged_in?
+      @policy = Policy.find_by_id(params[:id])
+      @policies = Policy.all
+     
+      @user = current_user
+    else
+      redirect_to login_path
+    end
+  end
+
   
   def policy_email
     PolicyMailer.policy_email().deliver_now
@@ -55,8 +66,8 @@ class PoliciesController < ApplicationController
   def update
     @policy = Policy.find(params[:id])
     if @policy.update(policy_params)
-      redirect_to dash_board_admin_path
-      flash :success => "Policy updated!" 
+      redirect_to policies_path
+      flash[:success] = "Policy updated!"
     else
       render 'edit'
     end
@@ -66,7 +77,7 @@ class PoliciesController < ApplicationController
     @policy = Policy.find(params[:id])
     @policy.destroy
     redirect_to policies_path
-    flash :success => "Policy deleted!"
+    flash[:success] = "Policy deleted!"
   end
 
   def new
@@ -99,6 +110,6 @@ class PoliciesController < ApplicationController
 
   private
   def policy_params
-    params.require(:policy).permit(:policy_type,:description,:sum_insured,:premium_amt,:commission, :purchase_date, :mature_date, :user_id,:company_id,:policytype_id)
+    params.require(:policy).permit(:policy_type,:description,:sum_insured,:premium_amt,:commission, :purchase_date, :mature_date, :user_id,:company_id,:policytype_id, documents: [])
   end
 end

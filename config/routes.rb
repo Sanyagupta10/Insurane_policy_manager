@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get 'dash_board/admin'
+get 'dash_board/admin'
   get 'dash_board/customer'
   get 'policies/select_company'
   get 'policies/select_plan'
   get 'policies/display'
   get 'policies/policy_email'
+  get 'policies/maturing'
   get 'companies/companyShow'
   get 'sessions/new'
   get 'users/new'
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   resources :policytypes
   resources :policies
   resources :comments
+  resources :posts
 end
