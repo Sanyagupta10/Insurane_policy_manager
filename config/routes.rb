@@ -14,11 +14,18 @@ get 'dash_board/admin'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  # get '/admin/policies', to: 'policies#index'
+  # get '/admin/policies/new', to: 'policies#new'
   
   resources :users
   resources :companies
   resources :policytypes
-  resources :policies
   resources :comments
   resources :posts
+  resources :policies
+  
+
+
+ 
 end

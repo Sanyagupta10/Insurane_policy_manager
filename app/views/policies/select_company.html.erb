@@ -1,6 +1,6 @@
 <% if(@allcompany.count!=0) %>
   <div class="container">
-    <h1> Step 1 :   Select a Company </h1>
+    <h1> Step 1 :   Select a Company whose policy you want to buy </h1>
     <div class="rows">
       <% @allcompany.each do |i| %>
       <%= link_to policies_select_plan_path(:company_id => i.id) do %>

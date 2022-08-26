@@ -2,7 +2,7 @@
 <% @plans=Policytype.where(:company_id => @c_id) %>
   <% if @plans.count!=0 %>
     <div class="container">
-      <h1> Step 2 :   Select a policy </h1>
+      <h1> Step 2 :   Select a plan </h1>
       <div class="rows">
         <% @plans.each do |i| %> 
         <%= link_to new_policy_path(:company_id => @c_id,:policytype_id => i.id) do %>
