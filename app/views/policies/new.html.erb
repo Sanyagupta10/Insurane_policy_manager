@@ -7,7 +7,7 @@
 <p id="pol_ins_amt" class="hidden"><%= @plan.sum_insured %></p>
 <h1 class="form-info">Add new policy</h1>
 <div class="container box-form">
-  <%= form_with(model: @policy, local: true) do |f| %>
+  <%= form_with(model: @policy, url: new_policy_path, local: true) do |f| %>
     <% if @policy.errors.any? %>
       <div id="error_explanation">
         <div class="alert alert-danger">

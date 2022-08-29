@@ -47,6 +47,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     color: #777;
 }
+h3 {
+    font-size: 2em;
+    letter-spacing: 0.5px;
+}
+    h4 {
+        font-size: 1.5em;
+        letter-spacing: 0.5px;
+    }
 p {
 font-size: 1.1em;
 line-height: 1.7em;
@@ -125,11 +133,26 @@ height: auto !important;
    margin-bottom: 5%;
 
 }
-.post-box:hover{
+.post-box:hover {
 
    background-color: rgba(238, 238, 238,0.8);
 }
-.new_btn{
+.new_btn {
    text-align:centre;
    margin-bottom:5%;
+}
+.comrow {
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30%;
+   gap: 2em;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.heading {
+    font-size: 2em;
+    padding: 1em;
+    letter-spacing: 0.3px;
 }

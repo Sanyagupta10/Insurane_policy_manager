@@ -33,7 +33,11 @@ class PoliciesController < ApplicationController
   
   def policy_email
     PolicyMailer.policy_email().deliver_now
-    redirect_to policies_path
+    if current_user.admin?
+      redirect_to admin_policies_path
+    else
+      redirect_to customer_policies_path
+    end
     flash[:success] = "Mail sent successfully"
   end
 
@@ -66,7 +70,11 @@ class PoliciesController < ApplicationController
   def update
     @policy = Policy.find(params[:id])
     if @policy.update(policy_params)
-      redirect_to policies_path
+      if current_user.admin?
+        redirect_to admin_policies_path
+      else
+        redirect_to customer_policies_path
+      end
       flash[:success] = "Policy updated!"
     else
       render 'edit'
@@ -76,7 +84,7 @@ class PoliciesController < ApplicationController
   def destroy
     @policy = Policy.find(params[:id])
     @policy.destroy
-    redirect_to policies_path
+    redirect_to admin_policies_path
     flash[:success] = "Policy deleted!"
   end
 
@@ -100,7 +108,11 @@ class PoliciesController < ApplicationController
   def create
     @policy= Policy.new(policy_params)
     if @policy.save
-      redirect_to policies_path 
+      if current_user.admin?
+        redirect_to admin_policies_path
+      else
+        redirect_to customer_policies_path
+      end
       flash[:success] = "Policy created!" 
     else
       redirect_to new_policy_path
