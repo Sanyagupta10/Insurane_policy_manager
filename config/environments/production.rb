@@ -14,7 +14,7 @@ Rails.application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
@@ -66,7 +66,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -119,17 +119,8 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   config.action_mailer.perform_deliveries = true
-  # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.gmail.com",
-  #   port: 587,
-  #   domain: "example.com",
-  #   user_name: Rails.application.credentials.SMTP_USER_NAME,
-  #   password: Rails.application.credentials.SMTP_PASSWORD,
-  #   authentication: "plain",
-  #   enable_starttls_auto: true
-  # }
+  config.action_mailer.raise_delivery_errors = true
+  
   config.action_mailer.default_url_options = {
     host: "insurance-policy-manager.herokuapp.com",
     protocol: "https"
@@ -143,6 +134,5 @@ Rails.application.configure do
   password:             Rails.application.credentials.dig(:google_smtp, :password),
   authentication:       'plain',
   enable_starttls_auto: true,
-  open_timeout:         5,
-  read_timeout:         5 }
+ }
 end
