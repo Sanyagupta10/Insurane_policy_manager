@@ -8,5 +8,7 @@
 		Forget all the hastle of keeping track of policies and missing premium dates.
 		Let us manage your policies better.
 	</p>
-	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+	<% if logged_in? == false %>
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+	<% end %>
 </div>

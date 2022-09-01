@@ -13,12 +13,10 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/admin/policies', to: 'policies#index'
-  get '/customer/policies', to: 'policies#index'
-  post '/policies/new', to: 'policies#create'
 
-  resources :policies, :users
+
+  resources  :users
   scope '/user' do
-    resources :companies, :policytypes, :comments
+    resources :companies, :policytypes, :comments, :policies
   end
 end
