@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       if user.admin?
-        redirect_back_or policies_path
+        redirect_back_or dash_board_admin_path
       else
         redirect_back_or dash_board_customer_path
       end

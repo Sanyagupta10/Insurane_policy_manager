@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
 	
   def destroy
 	  @p_id = (params[:pid])
-    @comment = Comment.find(params[:id]) 
+    @comment = Comment.find(params[:id])
     @comment.destroy
  
     redirect_to comments_path(:id => @p_id)

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
   get 'dash_board/admin'
   get 'dash_board/customer'
   get 'policies/select_company'
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   post 'user/policies/new', to: 'policies#create'
 
   resources  :users
+  resources :password_resets, only: [:new, :create, :edit, :update]
   scope '/user' do
     resources :companies, :policytypes, :comments, :policies
   end

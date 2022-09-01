@@ -1,7 +1,7 @@
 class PoliciesController < ApplicationController
   def index
 	  if logged_in?
-      @policies = Policy.all
+      @policies = Policy.includes(:user, policytype: [:company]).all
       @user = current_user
     else
       redirect_to login_path
@@ -13,7 +13,7 @@ class PoliciesController < ApplicationController
 
   def display
     if logged_in?
-      @policy = Policy.find_by_id(params[:id])
+      @policy = Policy.includes(:user, policytype: [:company]).find_by_id(params[:id])
     else
       redirect_to login_path
     end
@@ -21,7 +21,7 @@ class PoliciesController < ApplicationController
 
   def maturing
     if logged_in?
-      @policy = Policy.find_by_id(params[:id])
+      @policy = Policy.includes(:user, policytype: [:company]).find_by_id(params[:id])
       @policies = Policy.all
      
       @user = current_user
@@ -60,7 +60,7 @@ class PoliciesController < ApplicationController
 
   def edit
     if logged_in?
-      @policy = Policy.find(params[:id])
+      @policy = Policy.includes(:user, policytype: [:company]).find(params[:id])
       @user = current_user
     else
       redirect_to login_path
@@ -68,7 +68,7 @@ class PoliciesController < ApplicationController
   end
 
   def update
-    @policy = Policy.find(params[:id])
+    @policy = Policy.includes(:user, policytype: [:company]).find(params[:id])
     if @policy.update(policy_params)
       if current_user.admin?
         redirect_to policies_path
@@ -82,7 +82,7 @@ class PoliciesController < ApplicationController
   end
 
   def destroy
-    @policy = Policy.find(params[:id])
+    @policy = Policy.includes(:user, policytype: [:company]).find(params[:id])
     @policy.destroy
     redirect_to policies_path
     flash[:success] = "Policy deleted!"
