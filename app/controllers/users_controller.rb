@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Sign Up Successful!"
-      redirect_to @user
+      redirect_to dash_board_customer_path
     else
      render 'new'
     end
