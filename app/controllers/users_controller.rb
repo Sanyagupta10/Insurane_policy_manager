@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
+  before_action :authorized_user, only: [:create, :new]
 
   def new
     @user = User.new
@@ -18,9 +19,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Sign Up Successful!"
-      redirect_to dash_board_customer_path
+      if logged_in?
+        redirect_to users_path
+      else
+        log_in @user 
+        flash[:success] = "Sign Up Successful!"
+        redirect_to dash_board_customer_path
+      end
+    
     else
      render 'new'
     end
@@ -47,7 +53,6 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  
 
   private
     def user_params
@@ -73,5 +78,13 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
+
+    def authorized_user
+      unless logged_in? == false || current_user.admin?
+        redirect_to(root_url)
+        flash[:danger] = "Not Authorized!!"
+      end
+    end
+        
   
 end

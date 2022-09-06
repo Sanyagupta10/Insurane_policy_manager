@@ -38,7 +38,7 @@
             <td><%= i.premium_amt %></td>
             <td><%= i.commission %></td>
             <td><%= link_to "Policy Details", policies_display_path(:id => i.id),:class => "btn btn-primary" %></td>
-            <td><%= link_to "comments", comments_path(:id => i.id),:class => "btn btn-primary" %></td> 
+            <td><%= link_to "Comments", comments_path(:id => i.id),:class => "btn btn-primary" %></td> 
           </tr>
         <% end %>
       </tbody>

@@ -6,18 +6,18 @@
 <% @com = Company.find(@policy.company_id) %>
 <% @plan = Policytype.find(@policy.policytype_id) %>
 <div class="container show-box">
-  <p><strong> Holder's Name :</strong><%= @usr.name %></p><br>
-  <p><strong> Company Name :</strong><%= @com.name %></p><br>
-  <p><strong> policy Type :</strong><%= @policy.policy_type %></p><br>
-  <p><strong> Description :</strong><%= @policy.description %></p><br>
-  <p><strong> Sum insured :</strong><%= @policy.sum_insured %></p><br>
-  <p><strong> Premium amount :</strong><%= @policy.premium_amt %></p><br>
-  <p><strong> Commission :</strong><%= @policy.commission %></p><br>
-  <p><strong> Purchase date :</strong><%= @policy.purchase_date %></p><br>
-  <p><strong> Mature date :</strong><%= @policy.mature_date %></p><br><br>
+  <p><strong> Holder's Name : </strong><%= @usr.name %></p><br>
+  <p><strong> Company Name : </strong><%= @com.name %></p><br>
+  <p><strong> policy Type : </strong><%= @policy.policy_type %></p><br>
+  <p><strong> Description : </strong><%= @policy.description %></p><br>
+  <p><strong> Sum insured : </strong><%= @policy.sum_insured %></p><br>
+  <p><strong> Premium amount : </strong><%= @policy.premium_amt %></p><br>
+  <p><strong> Commission : </strong><%= @policy.commission %></p><br>
+  <p><strong> Purchase date : </strong><%= @policy.purchase_date %></p><br>
+  <p><strong> Mature date : </strong><%= @policy.mature_date %></p><br><br>
   
   <% if @policy.documents.attached? %>
-    <p><strong> Documents :</strong></p>
+    <p><strong> Documents : </strong></p>
     <% @policy.documents.each do |doc| %>
       <%= link_to doc.filename, rails_blob_path(doc), :class => "btn btn-primary custom_btn_small" %>
     <% end %>

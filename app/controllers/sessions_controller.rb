@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :authorized_user, only: [:create, :new]
   def new
   end
 
@@ -21,6 +22,14 @@ class SessionsController < ApplicationController
   def destroy
     log_out if logged_in?
     redirect_to root_url
+  end
+
+  private
+  def authorized_user
+    unless logged_in? == false 
+      redirect_to(root_url)
+      flash[:danger] = "Already logged in!"
+    end
   end
     
 end

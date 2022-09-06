@@ -22,26 +22,18 @@ class PoliciesController < ApplicationController
   def maturing
     if logged_in?
       @policy = Policy.includes(:user, policytype: [:company]).find_by_id(params[:id])
-      @policies = Policy.all
-     
+      @policies = Policy.all  
       @user = current_user
     else
       redirect_to login_path
     end
   end
-
   
   def policy_email
     PolicyMailer.policy_email().deliver_now
-    if current_user.admin?
-      redirect_to policies_path
-    else
-      redirect_to policies_path
-    end
+    redirect_back fallback_location: { action: "display" } 
     flash[:success] = "Mail sent successfully"
   end
-
-  
 
   def select_company
     if logged_in?
@@ -70,11 +62,7 @@ class PoliciesController < ApplicationController
   def update
     @policy = Policy.includes(:user, policytype: [:company]).find(params[:id])
     if @policy.update(policy_params)
-      if current_user.admin?
-        redirect_to policies_path
-      else
-        redirect_to policies_path
-      end
+      redirect_to policies_path    
       flash[:success] = "Policy updated!"
     else
       render 'edit'
@@ -92,10 +80,6 @@ class PoliciesController < ApplicationController
     if logged_in?
       @usr = User.find_by(id: current_user.id)
       @policy= Policy.new
-      # user = User.new do |u|
-      #   u.name = "David"
-      #   u.occupation = "Code Artist"
-      # end
 	    @c_id = params[:company_id]
 	    @p_id = params[:policytype_id]
       @u_id = params[:user_id]
@@ -112,15 +96,11 @@ class PoliciesController < ApplicationController
   def create
     @policy= Policy.new(policy_params)
     if @policy.save
-      if current_user.admin?
-        redirect_to policies_path
-      else
-        redirect_to policies_path
-      end
+      redirect_to policies_path 
       flash[:success] = "Policy created!" 
     else
-      redirect_to new_policy_path
-      flash[:danger] = "Policy could not be saved please enter all the details"
+      redirect_back fallback_location: { action: "create" } 
+      flash[:danger] = "Fill all compulsory fields! (User and sum insured should not be empty)"
     end
   end
 

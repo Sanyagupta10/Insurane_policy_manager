@@ -8,19 +8,7 @@
 <h1 class="form-info">Add new policy</h1>
 <div class="container box-form">
   <%= form_with(model: @policy, url: new_policy_path, local: true) do |f| %>
-    <% if @policy.errors.any? %>
-      <div id="error_explanation">
-        <div class="alert alert-danger">
-          <%= pluralize(@policy.errors.count, "error") %> prohibited
-          this policy from being saved:
-          <ul>
-            <% @policy.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'shared/policy_errors' %>
     <% @date= Date.today() + @plan.duration.year %>
 
     <% if @user.admin? %>
@@ -42,12 +30,12 @@
     <%= f.label :purchase_date, "Purchase Date" %>
     <%= f.text_field :purchase_date, :value => Date.today , :class => "form-control", :readonly => true %>
     <%= f.label :mature_date, "Mature Date" %>
-    <%= f.text_field :mature_date, :value => @date , :class => "form-control", :readonly => true %>
+    <%= f.date_field :mature_date, :value => @date , :class => "form-control", :readonly => true %>
     <%= f.hidden_field :company_id, :value => @c_id, :class => "form-control", :readonly => true %>
     <%= f.hidden_field :policytype_id, :value => @p_id, :class => "form-control", :readonly => true %>
 
 
-    <%= f.label :documents, "Documents" %>
+    <%= f.label :documents, "Documents (optional)" %>
     <%= f.file_field :documents, multiple: true, :class => "form-control" %>
 
     <%= f.submit "Create Policy", :class => "btn btn-primary custom_btn_small" %>

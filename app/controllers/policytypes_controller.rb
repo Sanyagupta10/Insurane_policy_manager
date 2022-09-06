@@ -24,6 +24,7 @@ class PolicytypesController < ApplicationController
     @policytype= Policytype.new(policytype_params)
     if @policytype.save
       redirect_to policytypes_path
+      flash[:success] = "Plan created!"
     else
       render 'new'
   	end
@@ -41,7 +42,8 @@ class PolicytypesController < ApplicationController
   def update
     @policytype = Policytype.includes(:company).find(params[:id])
     if @policytype.update(policytype_params)
-      redirect_to policytypes_path, :notice => "plan edited!!" 
+      redirect_to policytypes_path
+      flash[:success] = "Edit Successful!"
     else
       render 'edit'
     end
@@ -50,7 +52,8 @@ class PolicytypesController < ApplicationController
   def destroy
     @policytype = Policytype.includes(:company).find(params[:id])
     @policytype.destroy
-    redirect_to policytypes_path, :notice => "plan deleted"
+    redirect_to policytypes_path
+    flash[:success] = "Plan deleted!"
   end
 
 

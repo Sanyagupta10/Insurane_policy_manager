@@ -2,6 +2,7 @@
 	<div class="col-md-6 col-md-offset-3">
 		<% @duration=[5,10,15,20,25,30,35,40,45,50] %>
 		<%= form_with(model: @policytype, local: true) do |f| %>
+			<%= render 'shared/plan_errors' %>
 			<%= f.label :name %>
 			<%= f.text_field :name, class: 'form-control' %>
 			<%= f.label :description %>
