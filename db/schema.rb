@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_07_062350) do
+ActiveRecord::Schema.define(version: 2022_09_07_074439) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2022_09_07_062350) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "body"
-    t.integer "policy_id", null: false
+    t.string "body", null: false
+    t.integer "policy_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
@@ -51,20 +51,20 @@ ActiveRecord::Schema.define(version: 2022_09_07_062350) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
+    t.string "name", null: false
+    t.string "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "policies", force: :cascade do |t|
-    t.string "policy_type"
+    t.string "policy_type", null: false
     t.string "description"
-    t.decimal "sum_insured"
-    t.decimal "premium_amt"
-    t.decimal "commission"
-    t.date "purchase_date"
-    t.date "mature_date"
+    t.decimal "sum_insured", null: false
+    t.decimal "premium_amt", null: false
+    t.decimal "commission", null: false
+    t.date "purchase_date", null: false
+    t.date "mature_date", null: false
     t.integer "user_id", null: false
     t.integer "policytype_id", null: false
     t.integer "company_id", null: false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2022_09_07_062350) do
   end
 
   create_table "policytypes", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "description"
     t.integer "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -88,10 +88,10 @@ ActiveRecord::Schema.define(version: 2022_09_07_062350) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "contact_number"
-    t.string "address"
+    t.string "name", limit: 50, null: false
+    t.string "email", null: false
+    t.integer "contact_number"
+    t.string "address", limit: 100
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2022_09_07_062350) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.index ["contact_number"], name: "index_users_on_contact_number", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
