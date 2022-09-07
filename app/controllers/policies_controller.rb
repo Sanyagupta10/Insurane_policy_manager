@@ -8,6 +8,34 @@ class PoliciesController < ApplicationController
     end
   end
 
+  def new
+    if logged_in?
+      @usr = User.find_by(id: current_user.id)
+      @policy= Policy.new
+	    @c_id = params[:company_id]
+	    @p_id = params[:policytype_id]
+      @u_id = params[:user_id]
+      @pol_id = params[:id]
+      @user = current_user
+	    if @c_id == nil
+	  	  redirect_to policies_select_company_path
+	    end
+    else
+      redirect_to login_path
+    end  
+  end
+
+  def create
+    @policy= Policy.new(policy_params)
+    if @policy.save
+      redirect_to policies_path 
+      flash[:success] = "Policy created!" 
+    else
+      redirect_back fallback_location: { action: "create" } 
+      flash[:danger] = "Fill all compulsory fields! (User and sum insured should not be empty)"
+    end
+  end
+
   def show
   end
   def display
@@ -73,36 +101,11 @@ class PoliciesController < ApplicationController
     flash[:success] = "Policy deleted!"
   end
 
-  def new
-    if logged_in?
-      @usr = User.find_by(id: current_user.id)
-      @policy= Policy.new
-	    @c_id = params[:company_id]
-	    @p_id = params[:policytype_id]
-      @u_id = params[:user_id]
-      @pol_id = params[:id]
-      @user = current_user
-	    if @c_id == nil
-	  	  redirect_to policies_select_company_path
-	    end
-    else
-      redirect_to login_path
-    end  
-  end
-
-  def create
-    @policy= Policy.new(policy_params)
-    if @policy.save
-      redirect_to policies_path 
-      flash[:success] = "Policy created!" 
-    else
-      redirect_back fallback_location: { action: "create" } 
-      flash[:danger] = "Fill all compulsory fields! (User and sum insured should not be empty)"
-    end
-  end
+  
 
   private
   def policy_params
     params.require(:policy).permit(:policy_type,:description,:sum_insured,:premium_amt,:commission, :purchase_date, :mature_date, :user_id,:company_id,:policytype_id, documents: [])
   end
+  
 end
