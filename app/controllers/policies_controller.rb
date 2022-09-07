@@ -1,6 +1,6 @@
 class PoliciesController < ApplicationController
   def index
-	  if logged_in?
+    if logged_in?
       @policies = Policy.includes(:user, policytype: [:company]).all
       @user = current_user
     else
@@ -37,10 +37,10 @@ class PoliciesController < ApplicationController
 
   def select_company
     if logged_in?
-	    @allcompany = Company.all
-	  else
-	    redirect_to login_path
-	  end
+      @allcompany = Company.all
+    else
+      redirect_to login_path
+    end
   end
   def select_plan
     if logged_in?
