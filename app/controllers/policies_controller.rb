@@ -10,7 +10,6 @@ class PoliciesController < ApplicationController
 
   def show
   end
-
   def display
     if logged_in?
       @policy = Policy.includes(:user, policytype: [:company]).find_by_id(params[:id])
