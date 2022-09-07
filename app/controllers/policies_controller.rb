@@ -58,7 +58,6 @@ class PoliciesController < ApplicationController
       redirect_to login_path
     end
   end
-
   def update
     @policy = Policy.includes(:user, policytype: [:company]).find(params[:id])
     if @policy.update(policy_params)
@@ -68,7 +67,6 @@ class PoliciesController < ApplicationController
       render 'edit'
     end
   end
-
   def destroy
     @policy = Policy.includes(:user, policytype: [:company]).find(params[:id])
     @policy.destroy
