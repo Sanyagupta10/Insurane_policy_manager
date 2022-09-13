@@ -9,4 +9,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Password reset"
   end
+
+  def welcome_email(user)
+    @user = user
+    # @url  = 'http://example.com/login'
+    mail to: @user.email, subject: 'Welcome to Insurance Manager'
+  end
 end

@@ -19,11 +19,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+     
+     
       if logged_in?
+        UserMailer.welcome_email(@user).deliver_now
+        flash[:success] = "User created and welcome mail sent!"
         redirect_to users_path
+        # @user.send_password_reset_email
+        # UserMailer.password_reset(@user).deliver_now
       else
         log_in @user 
-        flash[:success] = "Sign Up Successful!"
+        # flash[:success] = "Sign Up Successful!"
         redirect_to dash_board_customer_path
       end
     

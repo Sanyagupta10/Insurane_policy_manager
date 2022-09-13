@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Insurance Manager, <%= @user.name %></h1>
+    <p>
+      Your username is: <%= @user.email %>.<br>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= link_to "Login", login_url %>.
+      Then click on Forget password and set a new password.
+    </p>
+  </body>
+</html>
