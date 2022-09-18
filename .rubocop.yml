@@ -20,3 +20,9 @@ Lint/UnusedMethodArgument:
 
 Style/GuardClause:
   Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
