@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PolicytypesController < ApplicationController
   def index
     if logged_in?

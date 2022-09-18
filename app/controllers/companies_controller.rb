@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompaniesController < ApplicationController
   def index
     if logged_in?
@@ -7,7 +9,7 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def companyShow
+  def company_show
     if logged_in?
       @company = Company.find_by_id(params[:id])
     else

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PasswordResetsController < ApplicationController
-  before_action :get_user, only: %i[edit update]
+  before_action :take_user, only: %i[edit update]
   before_action :valid_user, only: %i[edit update]
   before_action :check_expiration, only: %i[edit update]
   def new; end
@@ -40,7 +42,7 @@ class PasswordResetsController < ApplicationController
   end
 
   # Before filters
-  def get_user
+  def take_user
     @user = User.find_by(email: params[:email])
   end
 

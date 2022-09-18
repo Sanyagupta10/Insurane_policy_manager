@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'policies/display'
   get 'policies/policy_email'
   get 'policies/maturing'
-  get 'companies/companyShow'
+  get 'companies/company_show'
   get 'sessions/new'
   root 'welcome#home'
   get '/signup', to: 'users#new'

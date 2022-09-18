@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PolicyMailer < ApplicationMailer
   default from: 'insurance_manager@example.com'
 

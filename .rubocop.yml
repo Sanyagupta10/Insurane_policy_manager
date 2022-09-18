@@ -17,3 +17,6 @@ Bundler/OrderedGems:
 
 Lint/UnusedMethodArgument:
   Enabled: false
+
+ Rails/SkipsModelValidations:
+   Enabled: false

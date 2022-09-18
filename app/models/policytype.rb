@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Policytype < ApplicationRecord
   belongs_to :company
   has_many :policy, dependent: :destroy
