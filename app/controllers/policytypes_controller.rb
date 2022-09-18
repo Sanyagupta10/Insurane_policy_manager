@@ -1,15 +1,14 @@
 class PolicytypesController < ApplicationController
   def index
     if logged_in?
-      @policytypes= Policytype.includes(:company).all.reorder("Company_id")
-      @allcompany= Company.all
+      @policytypes = Policytype.includes(:company).all.reorder('Company_id')
+      @allcompany = Company.all
     else
       redirect_to login_path
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     if logged_in?
@@ -21,13 +20,13 @@ class PolicytypesController < ApplicationController
   end
 
   def create
-    @policytype= Policytype.new(policytype_params)
+    @policytype = Policytype.new(policytype_params)
     if @policytype.save
       redirect_to policytypes_path
-      flash[:success] = "Plan created!"
+      flash[:success] = 'Plan created!'
     else
       render 'new'
-  	end
+    end
   end
 
   def edit
@@ -39,11 +38,12 @@ class PolicytypesController < ApplicationController
       redirect_to login_path
     end
   end
+
   def update
     @policytype = Policytype.includes(:company).find(params[:id])
     if @policytype.update(policytype_params)
       redirect_to policytypes_path
-      flash[:success] = "Edit Successful!"
+      flash[:success] = 'Edit Successful!'
     else
       render 'edit'
     end
@@ -53,13 +53,12 @@ class PolicytypesController < ApplicationController
     @policytype = Policytype.includes(:company).find(params[:id])
     @policytype.destroy
     redirect_to policytypes_path
-    flash[:success] = "Plan deleted!"
+    flash[:success] = 'Plan deleted!'
   end
 
-
- private
+  private
 
   def policytype_params
-  	params.require(:policytype).permit(:name, :description, :company_id, :duration, :sum_insured, :premium_amt)
+    params.require(:policytype).permit(:name, :description, :company_id, :duration, :sum_insured, :premium_amt)
   end
 end

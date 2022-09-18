@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   def index
     if logged_in?
-      @companies= Company.all
+      @companies = Company.all
     else
       redirect_to login_path
     end
@@ -15,8 +15,7 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     if logged_in?
@@ -26,8 +25,9 @@ class CompaniesController < ApplicationController
       redirect_to login_path
     end
   end
+
   def create
-    @company= Company.new(company_params)
+    @company = Company.new(company_params)
     if @company.save
       redirect_to companies_path
     else
@@ -48,7 +48,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     if @company.update(company_params)
       redirect_to companies_path
-      flash[:success] = "Company updated" 
+      flash[:success] = 'Company updated'
     else
       render 'edit'
     end
@@ -56,15 +56,14 @@ class CompaniesController < ApplicationController
 
   def destroy
     @company = Company.find(params[:id])
-    @pol_d = Policy.where(:company_id => @company.id)
+    @pol_d = Policy.where(company_id: @company.id)
     @pol_d.each do |i|
-      i.destroy  
+      i.destroy
     end
     @company.destroy
     redirect_to companies_path
-    flash[:success] = "Company Deleted!"
+    flash[:success] = 'Company Deleted!'
   end
-
 
   private
 
@@ -72,4 +71,3 @@ class CompaniesController < ApplicationController
     params.require(:company).permit(:name, :description)
   end
 end
-

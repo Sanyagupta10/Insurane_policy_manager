@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :authorized_user, only: [:create, :new]
-  def new
-  end
+  before_action :authorized_user, only: %i[create new]
+  def new; end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
@@ -17,7 +16,6 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
-    
 
   def destroy
     log_out if logged_in?
@@ -25,11 +23,11 @@ class SessionsController < ApplicationController
   end
 
   private
+
   def authorized_user
-    unless logged_in? == false 
+    unless logged_in? == false
       redirect_to(root_url)
-      flash[:danger] = "Already logged in!"
+      flash[:danger] = 'Already logged in!'
     end
   end
-    
 end
