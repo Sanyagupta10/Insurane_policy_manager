@@ -7,7 +7,7 @@ SimpleCov.start do
   # add_filter "/spec/"
   add_filter 'app/helpers'
 
-  add_group 'Model', 'app/models'
+  # add_group 'Model', 'app/models'
 end
 require_relative '../config/environment'
 require 'rails/test_help'
