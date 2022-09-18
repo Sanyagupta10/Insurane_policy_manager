@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
 ENV['RAILS_ENV'] ||= 'test'
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/config/'
+  # add_filter "/spec/"
+  add_filter 'app/helpers'
+
+  add_group 'Model', 'app/models'
+end
 require_relative '../config/environment'
 require 'rails/test_help'
 
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors)
+    # parallelize(workers: :number_of_processors)
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all

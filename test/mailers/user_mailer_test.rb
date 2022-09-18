@@ -13,4 +13,12 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match user.reset_token,        mail.body.encoded
     assert_match CGI.escape(user.email),  mail.body.encoded
   end
+
+  test 'welcome_email' do
+    user = users(:michael)
+    mail = UserMailer.welcome_email(user)
+    assert_equal 'Welcome to Insurance Manager', mail.subject
+    assert_equal [user.email], mail.to
+    assert_equal ['noreply@example.com'], mail.from
+  end
 end

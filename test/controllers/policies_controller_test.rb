@@ -11,4 +11,8 @@ class PoliciesControllerTest < ActionDispatch::IntegrationTest
     get policies_path
     assert_redirected_to login_url
   end
+  # test 'should redirect edit when not logged in' do
+  #   get edit_policy_path
+  #   assert_redirected_to login_url
+  # end
 end

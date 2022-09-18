@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class PolicyMailer < ApplicationMailer
-  default from: 'insurance_manager@example.com'
-
   def policy_email
     @usr = User.find_by(@u_id)
     @com = Company.find_by(@c_id)
